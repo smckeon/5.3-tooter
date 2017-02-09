@@ -40,13 +40,14 @@ describe('PostView', function(){
 
   beforeEach(function(){
     posts = [{title: 'Cool', body: 'awesome'}];
-    view = new PostView();
+
     console.log($('.posts').length);
   });
 
   describe('showPosts', function(){
 
     it('should take a post array and list them', function(){
+      view = new PostView();
       view.showPosts(posts);
       expect($('.posts li').length).to.equal(1);
       expect($('.posts li').first().find('h1').text()).to.equal('Cool');
@@ -68,6 +69,9 @@ describe('PostView', function(){
       $(document).on('create:post', function(event, post){
         expect(post).to.have.property('title');
         expect(post).to.have.property('body');
+
+        expect(post).to.have.equal('title');
+        expect(post).to.have.equal('body');
 
         done();
       });
