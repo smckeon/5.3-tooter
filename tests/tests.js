@@ -4,6 +4,7 @@ var $ = require('jquery');
 
 var Post = require('../app/scripts/models.js').Post;
 var PostView = require('../app/scripts/views.js').PostView;
+require('../app/scripts/index');
 
 // ##############################################
 // Model Tests
@@ -53,5 +54,31 @@ describe('PostView', function(){
     });
 
   });
-  
+
 });
+<form id="blog-post">
+<input type ="text" class="blog-title"/>
+<input type ="text" class="blog-body"/>
+<input type ="submit"/>
+</form>
+
+  describe('create post form', function(){
+
+    it('should trigger a create:post event on the document with the title and body', function (done){
+      $(document).on('create:post', function(event, post){
+        expect(post).to.have.property('title');
+        expect(post).to.have.property('body');
+
+        done();
+      });
+
+        $('.blog-title').val("Title")
+        $('.blog-body').val("Body")
+        $('#blog-post').submit();
+
+    });
+  });
+
+
+
+  });

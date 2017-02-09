@@ -10,5 +10,6 @@ $(function(){
     view.showPosts(posts);
   });
 
+
   models.Post.fetch();
 });
